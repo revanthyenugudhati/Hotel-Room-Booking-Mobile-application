@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">Ambassador</string>
+    <string name="statndard_desc">Elegant, Standard Suite offers space and cozy comfort. A beautiful suite with queen bed and sitting area.
+    AMENITIES:
+        Queen-size bed
+        Living room
+        Fridge
+        Work desk
+        Balcony river view
+        Air conditioning
+        Iron and ironing board
+        Mattress and soft pillows
+        Safe
+        Makeup mirror
+        Phone
+        Television
+        Wireless internet access
+    </string>
+    <string name="executive_desc"> The Executive Suites showcase an open-plan bedroom outfitted in a contemporary Thai style. Steps from your bedroom, your spacious living room is brightly lit, with panoramic windows that overlook spectacular city views. A writing desk becomes your comfortable work area, when needed, whereas the latest high-tech luxuries, including two 40-inch LCD TVs, a DVD player and stereo system, provide theatre-style quality entertainment. The experience is further enhanced by an oversized spa bathroom featuring a whirlpool bathtub and a walk-in shower.</string>
+    <string name="presdential_desc">At the pinnacle of Amari Watergate’s luxury accommodation offerings, the Presidential Suite is your own private luxury enclave perched high above the glittering city streets. The elegantly appointed bedroom is open plan and connected to a dressing room and marble bathroom housing a whirlpool tub and a walk-in shower. A wooden folded door panel provides extra privacy when desired.
+From the bedroom, the suite unfolds into the expansive living room, containing a work desk and board room for up to 12 people. Your personal entertainment facilities include two 40-inch LCD TVs, a DVD player, stereo system and modern technology.</string>
+    <string-array name="ci_dates">
+        <item>Select Date</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+    <string-array name="ci_months">
+        <item>Select Month</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>

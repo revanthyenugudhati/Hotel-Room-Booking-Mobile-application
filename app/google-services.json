@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "229385837813",
+    "firebase_url": "https://hoteltejas-76a96.firebaseio.com",
+    "project_id": "hoteltejas-76a96",
+    "storage_bucket": "hoteltejas-76a96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229385837813:android:87862197a42d1ce10839bc",
+        "android_client_info": {
+          "package_name": "com.example.hoteltejas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229385837813-ahseeaa16nj3nurlu2643udlk89gmbp6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hoteltejas",
+            "certificate_hash": "ea8f16dcda5f386b9d27bd12199e65f9bf0e2405"
+          }
+        },
+        {
+          "client_id": "229385837813-khhu82lg84g5jatbp90b5am8ojmmu3st.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJc21sqRtpRzzWpFNvRdSwk2-Dg8uptUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229385837813-khhu82lg84g5jatbp90b5am8ojmmu3st.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
