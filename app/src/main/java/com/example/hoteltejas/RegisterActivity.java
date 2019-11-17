@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,76 +23,101 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main3Activity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
-    private static final String URL_FOR_LOGIN = "https://XXX.XXX.X.XX/android_login_example/login.php";
+    private static final String TAG = "RegisterActivity";
+    private static final String URL_FOR_REGISTRATION = "https://XXX.XXX.X.XX/android_login_example/register.php";
     ProgressDialog progressDialog;
-    private EditText loginInputEmail, loginInputPassword;
-    private Button btnlogin;
-    private Button btnLinkSignup;
+
+    private EditText signupInputName, signupInputEmail, signupInputPassword, signupInputAge;
+    private Button btnSignUp;
+    private Button btnLinkLogin;
+    private RadioGroup genderRadioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
-        loginInputEmail = (EditText) findViewById(R.id.login_input_email);
-        loginInputPassword = (EditText) findViewById(R.id.login_input_password);
-        btnlogin = (Button) findViewById(R.id.btn_login);
-        btnLinkSignup = (Button) findViewById(R.id.btn_link_signup);
+        setContentView(R.layout.activity_register);
+
         // Progress dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
-        btnlogin.setOnClickListener(new View.OnClickListener() {
+        signupInputName = (EditText) findViewById(R.id.signup_input_name);
+        signupInputEmail = (EditText) findViewById(R.id.signup_input_email);
+        signupInputPassword = (EditText) findViewById(R.id.signup_input_password);
+        signupInputAge = (EditText) findViewById(R.id.signup_input_age);
+
+        btnSignUp = (Button) findViewById(R.id.btn_signup);
+        btnLinkLogin = (Button) findViewById(R.id.btn_link_login);
+
+        genderRadioGroup = (RadioGroup) findViewById(R.id.gender_radio_group);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*loginUser(loginInputEmail.getText().toString(),
-                        loginInputPassword.getText().toString());*/
+                //submitForm();
+                Toast.makeText(RegisterActivity.this, "User Registered Succesfully", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getApplicationContext(),Main3Activity.class);
 
-                    Intent intent = new Intent(
-                            Main3Activity.this,
-                            MainActivity.class);
-                    //intent.putExtra("username", user);
-                    Toast.makeText(Main3Activity.this, "Logged In Succesfully", Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
+                    startActivity(i);
                     finish();
+
             }
         });
-
-        btnLinkSignup.setOnClickListener(new View.OnClickListener() {
+        btnLinkLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(i);
 
+                Intent i = new Intent(getApplicationContext(),Main3Activity.class);
+                startActivity(i);
             }
         });
     }
 
-    private void loginUser( final String email, final String password) {
+    private void submitForm() {
+
+        int selectedId = genderRadioGroup.getCheckedRadioButtonId();
+        String gender;
+        if(selectedId == R.id.female_radio_btn)
+            gender = "Female";
+        else
+            gender = "Male";
+
+        registerUser(signupInputName.getText().toString(),
+                signupInputEmail.getText().toString(),
+                signupInputPassword.getText().toString(),
+                gender,
+                signupInputAge.getText().toString());
+    }
+
+    private void registerUser(final String name,  final String email, final String password,
+                              final String gender, final String dob) {
         // Tag used to cancel the request
-        String cancel_req_tag = "login";
-        progressDialog.setMessage("Logging you in...");
+        String cancel_req_tag = "register";
+
+        progressDialog.setMessage("Adding you ...");
         showDialog();
+
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                URL_FOR_LOGIN, new Response.Listener<String>() {
+                URL_FOR_REGISTRATION, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "Register Response: " + response.toString());
                 hideDialog();
+
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
 
                     if (!error) {
                         String user = jObj.getJSONObject("user").getString("name");
-                        // Launch User activity
+                        Toast.makeText(getApplicationContext(), "Hi " + user +", You are successfully Added!", Toast.LENGTH_SHORT).show();
+
+                        // Launch login activity
                         Intent intent = new Intent(
-                                Main3Activity.this,
-                                MainActivity.class);
-                        intent.putExtra("username", user);
+                                RegisterActivity.this,
+                                Main3Activity.class);
                         startActivity(intent);
                         finish();
                     } else {
@@ -106,9 +132,10 @@ public class Main3Activity extends AppCompatActivity {
 
             }
         }, new Response.ErrorListener() {
+
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
+                Log.e(TAG, "Registration Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
@@ -116,22 +143,25 @@ public class Main3Activity extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams() {
-                // Posting params to login url
+                // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
+                params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
+                params.put("gender", gender);
+                params.put("age", dob);
                 return params;
             }
         };
         // Adding request to request queue
-
-       // AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(strReq,cancel_req_tag);
+       // AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(strReq, cancel_req_tag);
     }
 
     private void showDialog() {
         if (!progressDialog.isShowing())
             progressDialog.show();
     }
+
     private void hideDialog() {
         if (progressDialog.isShowing())
             progressDialog.dismiss();

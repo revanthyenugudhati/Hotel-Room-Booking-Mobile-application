@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,15 +23,26 @@ public class Payment extends AppCompatActivity {
     CardForm cardForm;
     Button buy;
     AlertDialog.Builder alertBuilder;
-    TextView text;
+    TextView text,t2,t3,t4;
+    EditText ed1,ed2,ed3;
+    String name,mail,phone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         boolean wc;
         boolean mc;
-
+        ed1=(EditText)findViewById(R.id.name_booking);
+        ed2=(EditText)findViewById(R.id.mail_booking);
+        ed3=(EditText)findViewById(R.id.phone_booking);
         text = (TextView)findViewById(R.id.amt);
+        t2 = (TextView)findViewById(R.id.name_b);
+        t3 = (TextView)findViewById(R.id.mail);
+        t4 = (TextView)findViewById(R.id.phone);
+
+        name=ed1.getText().toString();
+        mail=ed2.getText().toString();
+        phone=ed3.getText().toString();
         ConnectivityManager cm=(ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeInfo=cm.getActiveNetworkInfo();
         if(activeInfo!=null&&activeInfo.isConnected()){
@@ -65,7 +77,8 @@ public class Payment extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.dismiss();
-                                    Toast.makeText(Payment.this, "Thank you for purchase", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Payment.this, "Room Booked Successfully", Toast.LENGTH_LONG).show();
+
                                 }
                             });
                             alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -76,6 +89,12 @@ public class Payment extends AppCompatActivity {
                             });
                             AlertDialog alertDialog = alertBuilder.create();
                             alertDialog.show();
+
+                            Intent intent = new Intent(getApplicationContext(), Confirmed.class);
+                            intent.putExtra("name_message", name);
+                            intent.putExtra("mail_message", mail);
+                            intent.putExtra("phone_message", phone);
+                            startActivity(intent);
 
                         } else {
                             Toast.makeText(Payment.this, "Please complete the form", Toast.LENGTH_LONG).show();
@@ -123,6 +142,11 @@ public class Payment extends AppCompatActivity {
                             });
                             AlertDialog alertDialog = alertBuilder.create();
                             alertDialog.show();
+                            Intent intent = new Intent(getApplicationContext(), Confirmed.class);
+                            intent.putExtra("name_message", name);
+                            intent.putExtra("mail_message", mail);
+                            intent.putExtra("phone_message", phone);
+                            startActivity(intent);
 
                         } else {
                             Toast.makeText(Payment.this, "Please complete the form", Toast.LENGTH_LONG).show();

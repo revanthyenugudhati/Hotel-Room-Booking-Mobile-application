@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".Main2Activity"
     android:layout_marginLeft="10dp"
+    android:background="#FFFFFF"
     android:layout_marginRight="10dp">
 
     <ScrollView
@@ -17,6 +18,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#FFFFFF"
             android:orientation="vertical">
 
             <ImageView
@@ -169,7 +171,6 @@
                 android:layout_height="wrap_content"
                 android:text="Additional Bed"
                 android:textSize="20sp" />
-
             <Button
                 android:id="@+id/book"
                 android:background="@drawable/button_color"

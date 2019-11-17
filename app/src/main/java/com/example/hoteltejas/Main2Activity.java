@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,7 +29,7 @@ public class Main2Activity extends AppCompatActivity {
     RadioGroup radioGroup;
     private RadioButton radioButton;
     CheckBox c1,c2,c3,c4;
-
+    EditText ed1,ed2,ed3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,6 @@ public class Main2Activity extends AppCompatActivity {
         c2=(CheckBox)findViewById(R.id.swimming);
         c3=(CheckBox)findViewById(R.id.meals);
         c4=(CheckBox)findViewById(R.id.addbed);
-
         i1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,19 +111,19 @@ public class Main2Activity extends AppCompatActivity {
         else if(radioButton.getText().equals("Executive Suite")){
             amt=300;
         }
-        else if(radioButton.getText().equals("Presidentail Suite")){
+        else if(radioButton.getText().equals("Presidential Suite")){
             amt=500;
         }
-        if(c1.isSelected()){
-            amt+=10;
+        if(c1.isChecked()){
+            amt=amt+10;
         }
-        else if(c2.isSelected()){
+        else if(c2.isChecked()){
             amt+=20;
         }
-        else if(c3.isSelected()){
+        else if(c3.isChecked()){
             amt+=30;
         }
-        else if(c4.isSelected()){
+        else if(c4.isChecked()){
             amt+=50;
         }
 
@@ -131,6 +131,7 @@ public class Main2Activity extends AppCompatActivity {
        // Toast.makeText(Main2Activity.this,total, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getApplicationContext(), Payment.class);
         intent.putExtra("message", total);
+
 
         startActivity(intent);
     }
